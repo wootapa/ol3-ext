@@ -1,0 +1,16 @@
+{
+  "name": "ol3-ext",
+  "version": "1.0.0",
+  "description": "Cool extensions for OpenLayers 3 (ol3)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Viglino/ol3-ext.git"    
+  },
+  "author": "Jean-Marc Viglino",
+  "license": "CeCILL-B (French BSD license)",
+  "homepage": "http://viglino.github.io/ol3-ext/"
+}
