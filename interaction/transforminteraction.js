@@ -167,18 +167,6 @@ ol.interaction.Transform.prototype.setStyle = function(style, olstyle)
 {	if (!olstyle) return;
 	if (olstyle instanceof Array) this.style[style] = olstyle;
 	else this.style[style] = [ olstyle ];
-	for (var i=0; i<this.style[style].length; i++)
-	{	var im = this.style[style][i].getImage();
-		if (im) 
-		{	if (style == 'rotate') im.getAnchor()[0] = -5;
-			if (this.isTouch) im.setScale(1.8);
-		}
-		var tx = this.style[style][i].getText();
-		if (tx) 
-		{	if (style == 'rotate') tx.setOffsetX(this.isTouch ? 14 : 7);
-			if (this.isTouch) tx.setScale(1.8);
-		}
-	}
 	this.drawSketch_();
 };
 
