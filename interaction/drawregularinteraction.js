@@ -35,6 +35,8 @@ ol.interaction.DrawRegular = function(options)
 	this.centeredFn_ = options.centerCondition;
 	// Allow rotation when centered + square
 	this.canRotate_ = (options.canRotate !== false);
+	// Styles
+	this.style = options.style;
 
 	// Number of sides (default=0: circle)
 	this.setSides(options.sides);
