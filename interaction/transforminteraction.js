@@ -200,7 +200,7 @@ ol.interaction.Transform.prototype.getFeatureAtPixel_ = function(pixel)
 			}
 			// Others
 			else return { feature: feature };
-		}, this) || {};
+		}.bind(this)) || {};
 }
 
 /** Draw transform sketch
