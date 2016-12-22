@@ -7,10 +7,18 @@
  * The overview can rotate with map. 
  * Zoom levels are configurable.
  * Click on the overview will center the map.
+ * Change width/height of the overview trough css.
  *
  * @constructor
  * @extends {ol.control.Control}
  * @param {Object=} opt_options Control options.
+ *	- minZoom {Number} default 0
+ *	- maxZoom {Number} default 18
+ *	- rotation {boolean} enable rotation, default false
+ *	- align {top|bottom-left|right} position
+ *	- layers {Array<ol.layer>} list of layers
+ *	- style {ol.style.Style | Array.<ol.style.Style> | undefined} style to draw the map extent on the overveiw
+ *	- panAnimation {bool|elastic} use animation to center map on click, default true
  */
 ol.control.Overview = function(opt_options) 
 {	var options = opt_options || {};
@@ -22,9 +30,9 @@ ol.control.Overview = function(opt_options)
 	this.rotation = options.rotation;
 
 	var element;
-	if (options.element) 
-	{	element = $("<div>").hide();
-		this.panel_ = $(options.element);
+	if (options.target) 
+	{	element = $("<div>");
+		this.panel_ = $(options.target);
 	}
 	else
 	{	element = $("<div>").addClass('ol-overview ol-unselectable ol-control ol-collapsed');
@@ -107,7 +115,7 @@ ol.control.Overview = function(opt_options)
 	{	handleDownEvent: function(evt)
 		{	var pan;
 			if (options.panAnimation !==false)
-			{	if (options.elasticPan) 
+			{	if (options.panAnimation=="elastic" || options.elasticPan) 
 				{	pan = ol.animation.pan(
 					{	duration: 1000,
 						easing: ol.easing.elasticFn(2,0.3),
@@ -159,11 +167,10 @@ ol.control.Overview.prototype.setPosition = function(align)
  * @param {ol.Map} map The map instance.
  */
 ol.control.Overview.prototype.setMap = function(map) 
-{   ol.control.Control.prototype.setMap.call(this, map);
-
-	this.map_ = map;
-	map.getView().un('propertychange', this.setView, this);
-	// Get change (new layer added or removed)
+{   if (this.getMap())
+	{	this.getMap().getView().un('propertychange', this.setView, this);
+	}
+	ol.control.Control.prototype.setMap.call(this, map);
 	if (map) 
 	{	map.getView().on('propertychange', this.setView, this);
 		this.setView();

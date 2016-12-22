@@ -200,6 +200,16 @@
 			<p class="tag">style, vector, fill, pattern, hatch</p>
 		</div>
 
+		<div class="example">
+			<a class="mainlink" href="examples/map.style.textpath.html">
+				<strong>Textpath style</strong><br>
+			</a>
+			<p class="description">
+				The ol.vector.setTextPathStyle() is a function to draw text along a linear feature (ol.geom.lineString) on postcompose.
+			</p>
+			<p class="tag">style, vector, textpath, text, along</p>
+		</div>
+
 	<h2>Animation</h2>
 	
 		<div class="example">
@@ -209,7 +219,15 @@
 			<p class="description"><i>ol.featureAnimation</i> provides animations to animate features on a map.</p>
 			<p class="tag">map, feature, animation, bounce, drop</p>
 		</div>
-	
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.featureanimation.select.html">
+				<strong>Feature animation with select</strong><br>
+			</a>
+			<p class="description">This example show how to use a transparent style to let the features selectable when animated.</p>
+			<p class="tag">map, feature, animation, bounce, drop, select</p>
+		</div>
+
 		<div class="example">
 			<a class="mainlink" href="examples/map.featureanimation.path.html">
 				<strong>Animate features along a path</strong><br>
@@ -272,15 +290,6 @@
 		</div>
 
 		<div class="example">
-			<a class="mainlink" href="examples/map.pirate.html">
-				<strong>Pirate map.</strong><br>
-			</a>
-			<p class="description">The <i>ol.control.PirateMap </i> adds an old map effect on a canvas renderer. 
-			It colors the map, adds a parchment texture and compass onto the map.</p>
-			<p class="tag">control, canvas, pirate, compass, effect</p>
-		</div>
-
-		<div class="example">
 			<a class="mainlink" href="examples/map.target.control.html">
 				<strong>Target control.</strong><br>
 			</a>
@@ -297,6 +306,22 @@
 			<p class="description">The <i>ol.interaction.Transform</i> is an interaction to transform features (scale, translate, rotate).</p>
 			<p class="tag">interaction, transform, scale, translate, rotate, vector</p>
 		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.interaction.split.html">
+				<strong>Split feature interaction</strong><br>
+			</a>
+			<p class="description"><i>ol.interaction.Split</i> is an interaction to split feature geometry (ol.geom.LineString).</p>
+			<p class="tag">interaction, split, linestring</p>
+		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.interaction.splitter.html">
+				<strong>Splitter interaction</strong><br>
+			</a>
+			<p class="description">An interaction that acts as a split feature agent while editing vector features (LineString). </p>
+			<p class="tag">interaction, split, linestring</p>
+		</div>
 	
 		<div class="example">
 			<a class="mainlink" href="examples/map.interaction.drawregular.html">
@@ -305,7 +330,15 @@
 			<p class="description"><i>ol.interaction.DrawRegular</i> is an interaction to draw regular polygon (circle/ellipse, triangle, square/rectangles, etc).</p>
 			<p class="tag">interaction, regular, interaction, draw, circle, triangle</p>
 		</div>
-	
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.interaction.hover.html">
+				<strong>Hover interaction</strong><br>
+			</a>
+			<p class="description">An interaction to do something when hovering a feature (change cursor, show a popup, display information, etc.)</p>
+			<p class="tag">interaction, hover, cursor</p>
+		</div>
+
 		<div class="example">
 			<a class="mainlink" href="examples/map.interaction.clip.html">
 				<strong>Clip interaction</strong><br>
@@ -313,7 +346,7 @@
 			<p class="description"><i>ol.interaction.Clip</i> clip layers by a circle on the map.</p>
 			<p class="tag">interaction, clip, circle, canvas</p>
 		</div>
-	
+
 		<div class="example">
 			<a class="mainlink" href="examples/map.ddrop.html">
 				<strong>Dropfile interaction</strong><br>
@@ -322,6 +355,48 @@
 			<p class="tag">interaction, drag, drop</p>
 		</div>
 	
+	<h2>Control bar</h2>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.control.button.html">
+				<strong>Control button</strong><br>
+			</a>
+			<p class="description">The <i>ol.control.Button</i> is simple control button.</p>
+			<p class="tag">control, button, toolbar</p>
+		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.control.toggle.html">
+				<strong>Control Toggle</strong><br>
+			</a>
+			<p class="description"><i>ol.control.Toggle</i> is an <i>ol.control.Button</i> with an active/deactive state. </p>
+			<p class="tag">control, button, toggle, toolbar</p>
+		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.control.bar.html">
+				<strong>Control bar</strong><br>
+			</a>
+			<p class="description">The <i>ol.control.Bar</i> is a panel that contains other controls. You can compose toolbars with it.</p>
+			<p class="tag">control, bar, toolbar, button, panel</p>
+		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.control.subbar.html">
+				<strong>Control subbar</strong><br>
+			</a>
+			<p class="description"><i>ol.control.Bar</i> an be bested using an ol.control.Toggle to add subbar.</p>
+			<p class="tag">control, bar, subbar, toolbar, button, panel</p>
+		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.control.editbar.html">
+				<strong>Edit bar</strong><br>
+			</a>
+			<p class="description">An example of <i>ol.control.Bar</i> to handle an edit toolbar.</p>
+			<p class="tag">control, edit, bar, toolbar, button, panel</p>
+		</div>
+
 	<h2>Controls</h2>
 
 		<div class="example">
@@ -352,7 +427,7 @@
 			<a class="mainlink" href="examples/map.overview.html">
 				<strong>Overview map</strong><br>
 			</a>
-			<p class="description">An overview map with zoom limit and custom styles.</p>
+			<p class="description">An overview map with zoom limit and custom styles. Click on the overview will center the map.</p>
 			<p class="tag">overview, control</p>
 		</div>
 	
@@ -362,14 +437,6 @@
 			</a>
 			<p class="description"><i>ol.control.Profil</i> is a control that draw a profil of a 3D lineString (with a XYZ or XYZM layout)..</p>
 			<p class="tag">control, profil, Z, altitude, GPX, GPS</p>
-		</div>
-
-		<div class="example">
-			<a class="mainlink" href="examples/map.control.bar.html">
-				<strong>Control bar</strong><br>
-			</a>
-			<p class="description">The <i>ol.control.Bar</i> is a panel that contains other controls. You can compose toolbars with it.</p>
-			<p class="tag">control, bar, toolbar, panel</p>
 		</div>
 
 		<div class="example">
@@ -385,9 +452,17 @@
 				<strong>Swipe control</strong><br>
 			</a>
 			<p class="description">The <i>ol.control.Swipe</i> is a control that add a split screen to compare two map overlays. </p>
+			<p class="tag">control, globe, overview</p>
+		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.control.globe.html">
+				<strong>Globe control</strong><br>
+			</a>
+			<p class="description">The <i>ol.control.Globe</i> add a small globe on the map to display a position marker. </p>
 			<p class="tag">control, swipe, overlay, split</p>
 		</div>
-	
+
 	
 	<h2>Popup</h2>
 
@@ -433,8 +508,52 @@
 			<p class="tag">layer, vector, wikipedia, dbpedia</p>
 		</div>
 
+	<h2>Touch</h2>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.interaction.touchcompass.html">
+				<strong>Touch compass interaction</strong><br>
+			</a>
+			<p class="description">
+				The <i>TouchCompass</i> interaction lets you handle movement by dragging a touch compass.
+			</p>
+			<p class="tag">interaction, touch, drag, compass</p>
+		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.interaction.drawtouch.html">
+				<strong>Touch draw interaction</strong><br>
+			</a>
+			<p class="description">
+				An interactioon for drawing feature geometry on a touch device.
+			</p>
+			<p class="tag">interaction, touch, draw, vector</p>
+		</div>
+
 	<h2>Miscancellous</h2>
 	
+		<div class="example">
+			<a class="mainlink" href="examples/map.geom.cspline.html">
+				<strong>Cardinal spline</strong><br>
+			</a>
+			<p class="description">
+				The ol.geom.Geometry.cspline() function smooth lines by using cardinal splines (canonical spline) 
+				to draw smooth curves that goes through the points.
+			</p>
+			<p class="tag">geom, linestring, spline, smooth, curve</p>
+		</div>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.overlay.magnify.html">
+				<strong>Magnify glass</strong><br>
+			</a>
+			<p class="description">
+				The Magnify overlay add a "magnifying glass" effect to an OL3 map
+				that displays a portion of the map in a different zoom (and actually display different content).
+			</p>
+			<p class="tag">overlay, magnify, glass, zoom</p>
+		</div>
+
 		<div class="example">
 			<a class="mainlink" href="examples/map.flashlight.html">
 				<strong>Flashlight!</strong><br>
@@ -460,6 +579,14 @@
 		</div>
 
 		<div class="example">
+			<a class="mainlink" href="examples/map.interaction.synchronize.html">
+				<strong>Synchronize Maps</strong><br>
+			</a>
+			<p class="description">Synchronize maps and add an overlay to show mouse position.</p>
+			<p class="tag">synchronization, map, cursor</p>
+		</div>
+
+		<div class="example">
 			<a class="mainlink" href="examples/map.synchro.html">
 				<strong>Synchronize Maps</strong><br>
 			</a>
@@ -469,6 +596,17 @@
 
 	
 	<h2>Full map</h2>
+
+		<div class="example">
+			<a class="mainlink" href="examples/map.pirate.html">
+				<strong>Pirate map.</strong><br>
+			</a>
+			<p class="description">
+				The <i>ol.control.PirateMap </i> adds an old map effect on a canvas renderer.
+				It colors the map, adds a parchment texture and compass onto the map.
+			</p>
+			<p class="tag">control, canvas, pirate, compass, effect</p>
+		</div>
 
 		<div class="example">
 			<a class="mainlink" href="examples/map.layer.3D.html">

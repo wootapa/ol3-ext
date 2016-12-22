@@ -4,14 +4,16 @@
 */
 /** ol.control.Target draw a target at the center of the map. 
 * @param {Object}
-*  - style {ol.style|Array<ol.style>} ol.style.Stroke: draw a cross on the map, ol.style.Image: draw the image on the map
+*  - style {ol.style.Style|Array<ol.style.Style>} ol.style.Stroke: draw a cross on the map, ol.style.Image: draw the image on the map
 *  - composite {string} composite operation : difference|multiply|xor|screen|overlay|darken|lighter|lighten|...
 */
 ol.control.Target = function(options) 
 {	options = options || {};
-	var self = this;
 
-	this.style = options.style || [{ stroke: new ol.style.Stroke({ color:"#000", width:2 }), radius: 10 }];
+	this.style = options.style ||
+		[	new ol.style.Style({ image: new ol.style.RegularShape ({ points: 4, radius: 11, radius1: 0, radius2: 0, snapToPixel:true, stroke: new ol.style.Stroke({ color: "#fff", width:3 }) }) }),
+			new ol.style.Style({ image: new ol.style.RegularShape ({ points: 4, radius: 11, radius1: 0, radius2: 0, snapToPixel:true, stroke: new ol.style.Stroke({ color: "#000", width:1 }) }) })
+		];
 	if (!(this.style instanceof Array)) this.style = [this.style];
 	this.composite = options.composite || '';
 
@@ -21,8 +23,9 @@ ol.control.Target = function(options)
 	{	element: div,
 		target: options.target
 	});
-};
 
+	this.setVisible(options.visible!==false);
+};
 ol.inherits(ol.control.Target, ol.control.Control);
 
 /**
@@ -33,24 +36,40 @@ ol.inherits(ol.control.Target, ol.control.Control);
  * @api stable
  */
 ol.control.Target.prototype.setMap = function (map)
-{	ol.control.Control.prototype.setMap.call(this, map);
-
-	if (this.map_) 
-	{	this.map_.un('postcompose', this.drawTarget_, this);
+{	if (this.getMap()) 
+	{	this.getMap().un('postcompose', this.drawTarget_, this);
+		if (this.getVisible()) this.getMap().renderSync();
 	}
+
+	ol.control.Control.prototype.setMap.call(this, map);
+
 	if (map) 
 	{	map.on('postcompose', this.drawTarget_, this);
 	}
-	this.map_ = map;
+};
+
+/** Set the control visibility
+* @paraam {boolean} b 
+*/
+ol.control.Target.prototype.setVisible = function (b)
+{	this.set("visible",b);
+	if (this.getMap()) this.getMap().renderSync();
+};
+
+/** Get the control visibility
+* @return {boolean} b 
+*/
+ol.control.Target.prototype.getVisible = function ()
+{	return this.get("visible");
 };
 
 /** Draw the target
 * @private
 */
-ol.control.Target.prototype.drawTarget_ = function (event)
-{	if (!this.map_) return;
-	var ctx = event.context;
-	var ratio = event.frameState.pixelRatio;
+ol.control.Target.prototype.drawTarget_ = function (e)
+{	if (!this.getMap() || !this.getVisible()) return;
+	var ctx = e.context;
+	var ratio = e.frameState.pixelRatio;
 
 	ctx.save();
 	
@@ -58,22 +77,43 @@ ol.control.Target.prototype.drawTarget_ = function (event)
 
 		var cx = ctx.canvas.width/(2*ratio);
 		var cy = ctx.canvas.height/(2*ratio);
+		var geom = new ol.geom.Point (this.getMap().getCoordinateFromPixel([cx,cy]));
 
 		if (this.composite) ctx.globalCompositeOperation = this.composite;
 
+		for (var i=0; i<this.style.length; i++)
+		{	var style = this.style[i];
+
+			if (style instanceof ol.style.Style)
+			{	var imgs = style.getImage();
+				var sc;
+				if (imgs) 
+				{	var sc = imgs.getScale(); 
+					imgs.setScale(ratio*sc);
+				}
+				e.vectorContext.setStyle(style);
+				e.vectorContext.drawGeometry(geom);
+				if (imgs) imgs.setScale(sc);
+			}
+		}
+
+	/*
 		for (var i=0; i<this.style.length; i++)
 		{	var style = this.style[i];
 			if (style.stroke instanceof ol.style.Stroke)
 			{	ctx.lineWidth = style.stroke.getWidth();
 				ctx.strokeStyle = ol.color.asString(style.stroke.getColor());
 				var m = style.radius || 10;
+				
+				var dx = cx + ctx.lineWidth/2;
+				var dy = cy + ctx.lineWidth/2;
 
 				ctx.beginPath();
-				ctx.moveTo (cx-m, cy);
-				ctx.lineTo (cx+m, cy);
-				ctx.moveTo (cx, cy-m);
-				ctx.lineTo( cx, cy+m);
-				ctx.stroke(); 
+				ctx.moveTo (dx-m, dy);
+				ctx.lineTo (dx+m, dy);
+				ctx.moveTo (dx, dy-m);
+				ctx.lineTo( dx, dy+m);
+				ctx.stroke();
 			}
 			else if (style instanceof ol.style.Image)
 			{	var img = style.getImage();
@@ -96,6 +136,7 @@ ol.control.Target.prototype.drawTarget_ = function (event)
 				}
 			}
 		}
+		*/
 
 	ctx.restore();
 };
