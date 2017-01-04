@@ -80,14 +80,14 @@ ol.interaction.Transform.prototype.Cursors =
 	'select':	'pointer',
 	'translate':'move',
 	'rotate':	'move',
-	'scale':	'ne-resize', 
+	'scale':	'sw-resize', 
 	'scale1':	'nw-resize', 
 	'scale2':	'ne-resize', 
-	'scale3':	'nw-resize',
-	'scalev':	'e-resize', 
+	'scale3':	'se-resize',
+	'scalev':	'w-resize', 
 	'scaleh1':	'n-resize', 
 	'scalev2':	'e-resize', 
-	'scaleh3':	'n-resize'
+	'scaleh3':	's-resize'
 };
 
 /**
