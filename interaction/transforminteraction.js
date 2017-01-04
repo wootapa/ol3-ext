@@ -26,6 +26,8 @@ ol.interaction.Transform = function(options)
 
 	/** Collection of feature to transform */
 	this.features_ = options.features;
+ 	/** Optional stylefunction */
+	this.styleFunc = options.styleFunc;
 	/** List of layers to transform */
 	this.layers_ = options.layers ? (options.layers instanceof Array) ? options.layers:[options.layers] : null;
 
@@ -56,7 +58,12 @@ ol.interaction.Transform = function(options)
 			displayInLayerSwitcher: false,
 			// Return the style according to the handle type
 			style: function (feature)
-				{	return (self.style[(feature.get('handle')||'default')+(feature.get('constraint')||'')+(feature.get('option')||'')]);
+				{	
+					var handle = (feature.get('handle')||'default')+(feature.get('constraint')||'')+(feature.get('option')||'');
+					if (self.styleFunc) {
+						return self.styleFunc.call(self, handle, self.feature_);
+					}
+					return self.style[handle];
 				}
 		});
 
