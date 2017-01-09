@@ -327,7 +327,12 @@ ol.interaction.Transform.prototype.handleDragEvent_ = function(evt)
 			{	var geometry = this.geom_.clone();
 				geometry.rotate(a-this.angle_, this.center_);
 				
-				this.feature_.setGeometry(geometry);
+				if (this.feature_.getGeometry().getType() == 'Circle') {
+					this.feature_.getGeometry().setCenterAndRadius(geometry.getCenter(), geometry.getRadius());
+				}
+				else {
+					this.feature_.getGeometry().setCoordinates(geometry.getCoordinates());
+				}
 			}
 			this.drawSketch_(true);
 			this.dispatchEvent({ type:'rotating', feature: this.feature_, angle: a-this.angle_, pixel: evt.pixel, coordinate: evt.coordinate });
@@ -375,7 +380,12 @@ ol.interaction.Transform.prototype.handleDragEvent_ = function(evt)
 				}
 				return g2;
 			});
-			this.feature_.setGeometry(geometry);
+			if (this.feature_.getGeometry().getType() == 'Circle') {
+				this.feature_.getGeometry().setCenterAndRadius(geometry.getCenter(), geometry.getRadius());
+			}
+			else {
+				this.feature_.getGeometry().setCoordinates(geometry.getCoordinates());
+			}
 			this.drawSketch_();
 			this.dispatchEvent({ type:'scaling', feature: this.feature_, scale:[scx,scy], pixel: evt.pixel, coordinate: evt.coordinate });
 		}
